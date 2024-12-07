@@ -24,11 +24,17 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Verify git installation
+        run: git --version
+
       - name: Install CocoaPods dependencies (iOS only)
         if: runner.os == 'macOS'
         run: |
           cd ios
           pod install
+
+      - name: Run tests
+        run: npm test
 
       - name: Build the project
         run: |
